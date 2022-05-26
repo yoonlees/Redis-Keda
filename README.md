@@ -53,12 +53,13 @@ to [scottzach1/redis-consumer](https://hub.docker.com/repository/docker/scottzac
 
 #### Keda
 
-[Keda]](https://keda.sh/) (Kubernetes Event-driven Autoscaling) is an event based autoscaler that can be leveraged to
+[Keda (Kubernetes Event-driven Autoscaling)](https://keda.sh/) is an event based autoscaler that can be leveraged to
 drive scaling in Kubernetes in useful ways based off a number of strategies.
 
-This project utilises the `Redis Lists` trigger to scale the number of consumer pods based on the number of respective
-events in the Redis list. Although Kubernetes provides native scaling strategies with
-HPA [Horizontal Pod Autoscaling](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/), this is
+This project utilises the [Redis Lists](https://keda.sh/docs/2.7/scalers/redis-streams/) trigger to scale the number of
+consumer pods based on the number of respective events in the Redis list. Although Kubernetes provides native scaling
+strategies with
+[HPA (Horizontal Pod Autoscaling)](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/), this is
 typically limited to resource metrics such as memory or CPU usage.
 
 Unfortunately, this isn't always ideal in scenarios such as highly IO bound workloads. In such case, Kubernetes HPA
@@ -78,9 +79,9 @@ kubectl create namespace redis-demo
 ### Redis
 
 ```bash
-kubectl -n redis-demo apply -f redis/redis-config.yaml
-kubectl -n redis-demo apply -f redis/redis-pod.yaml
+kubectl -n redis-demo apply -f redis/redis-deployment.yaml
 
+# To see created resources:
 kubectl -n redis-demo get all
 #----------------------------
 NAME                         READY   STATUS    RESTARTS   AGE
