@@ -189,3 +189,13 @@ pod/redis-scaledjob-xpnnx-rk5vn        0/1     ContainerCreating   0          10
 pod/redis-scaledjob-xwldv-s52kh        0/1     ContainerCreating   0          22s
 ...
 ```
+
+You may also watch the number of events:
+
+```bash
+watch kubectl -n redis exec -it redis-demo redis-8476db56bf-bzbgq -- redis-cli LLEN events
+#----------------------------------
+Every 2.0s: minikube kubectl -- -n redis-demo exec -it redis-8476db56bf-bzbgq -- redis-cli LLEN events        Arch-3080: Fri May 27 00:36:04 2022
+
+(integer) 7
+```

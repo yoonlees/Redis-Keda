@@ -13,12 +13,13 @@ spec:
         containers:
           - name: redis-consumer
             image: scottzach1/redis-consumer
+            imagePullPolicy: Never
         resources:
         requests:
   pollingInterval: 3
   successfulJobsHistoryLimit: 0
   failedJobsHistoryLimit: 5
-  maxReplicaCount: 20
+  maxReplicaCount: 30
   rolloutStrategy: accurate
   triggers:
     - type: redis  # https://keda.sh/docs/2.7/scalers/redis-lists/
