@@ -1,0 +1,29 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledJob  # https://keda.sh/docs/2.7/concepts/scaling-jobs/
+metadata:
+  name: redis-scaledjob
+spec:
+  jobTargetRef:
+    parallelism: 1 # 100
+    completions: 1
+    activeDeadlineSeconds: 3600  # 1h
+    backoffLimit: 6
+    template:  # https://kubernetes.io/docs/concepts/workloads/controllers/job/
+      spec:
+        containers:
+          - name: redis-consumer
+            image: scottzach1/redis-consumer
+        resources:
+        requests:
+  pollingInterval: 3
+  successfulJobsHistoryLimit: 0
+  failedJobsHistoryLimit: 5
+  maxReplicaCount: 20
+  rolloutStrategy: accurate
+  triggers:
+    - type: redis  # https://keda.sh/docs/2.7/scalers/redis-lists/
+      metadata:
+        host: 10.99.146.61
+        port: "6379"
+        listName: events
+        listLength: "1"

@@ -12,7 +12,7 @@ r = Redis(host=REDIS_HOST, port=int(REDIS_PORT))
 
 while True:
     print('publishing events:')
-    for i in range(10):
+    for i in range(5):
         event = {'wait': Random().randint(10, 20)}
         r.lpush('events', json.dumps(event))
         print(f'- {event}')
