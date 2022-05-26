@@ -12,8 +12,14 @@ spec:
   scaleTargetRef:
     name: redis-consumer
   triggers:
-    - type: redis
+    - type: redis  # https://keda.sh/docs/2.7/scalers/redis-lists/
       metadata:
-        addressFromEnv: REDIS_SERVICE_HOST
-        listName: events
-        listLength: "10"
+        usernameFromEnv: REDIS_USERNAME # optional
+        passwordFromEnv: REDIS_PASSWORD
+        listName: mylist # Required
+        listLength: "5" # Required
+        enableTLS: "false" # optional
+        databaseIndex: "0" # optional
+        # Alternatively, you can use existing environment variables to read configuration from:
+        # See details in "Parameter list" section
+        addressFromEnv: REDIS_HOST # Optional. You can use this instead of `address` parameter
