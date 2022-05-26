@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-publisher
+  labels:
+    app: redis-publisher
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis-publisher
+  template:
+    metadata:
+      labels:
+        app: redis-publisher
+    spec:
+      hostNetwork: true
+      containers:
+        - name: redis-publisher
+          image: scottzach1/redis-publisher

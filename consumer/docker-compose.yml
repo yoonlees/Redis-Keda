@@ -1,0 +1,5 @@
+version: "3.9"
+services:
+  redis-consumer:
+    build: .
+    network_mode: "host"

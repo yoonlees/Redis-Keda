@@ -1,0 +1,19 @@
+# THIS IS A NON_FUNCTIONAL DRAFT!!
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: redis-scaledobject
+  labels:
+    deploymentName: redis-consumer
+spec:
+  maxReplicaCount: 4
+  pollingInterval: 3  # Optional. Default: 30 seconds
+  cooldownPeriod:  5  # Optional. Default: 300 seconds
+  scaleTargetRef:
+    name: redis-consumer
+  triggers:
+    - type: redis
+      metadata:
+        addressFromEnv: REDIS_SERVICE_HOST
+        listName: events
+        listLength: "10"
