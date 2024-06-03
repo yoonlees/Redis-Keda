@@ -14,17 +14,20 @@ spec:
           - name: redis-consumer
             image: techsvcdtiregistry.azurecr.io/redis-consumer:latest
             imagePullPolicy: Always
+            env:
+              - name: REDIS_SERVICE_HOST
+                value: "10.0.63.247"
         # resources:
         # requests:
   pollingInterval: 3
   successfulJobsHistoryLimit: 0
   failedJobsHistoryLimit: 5
-  maxReplicaCount: 150
+  maxReplicaCount: 30
   rolloutStrategy: accurate
   triggers:
     - type: redis  # https://keda.sh/docs/2.7/scalers/redis-lists/
       metadata:
-        host: redis.redis-scrapy.svc.cluster.local
+        host: 10.0.63.247
         port: "6379"
         listName: events
         listLength: "1"

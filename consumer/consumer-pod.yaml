@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: consumer-pod
+spec:
+  nodeSelector:
+    kubernetes.io/os: linux
+  containers:
+    - image: techsvcdtiregistry.azurecr.io/redis-consumer:latest
+      imagePullPolicy: Always
+      name: consumer-pod

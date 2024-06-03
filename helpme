@@ -1,0 +1,9 @@
+kubectl -n redis-scrapy apply -f publisher/publisher-deployment.yaml 
+kubectl -n redis-scrapy get logs redis-publisher-5975dbcbf-wpwpv
+kubectl -n redis-scrapy logs redis-publisher-5975dbcbf-wpwpv
+kubectl -n redis-scrapy delete deployment redis-publisher
+
+kubectl -n redis-scrapy exec -it redis-6c6f6b67d-lwd8r -- redis-cli LLEN events
+
+kubectl -n redis-scrapy delete scaledjobs/redis-scaledjob
+kubectl -n redis-scrapy rollout restart deployment redis-publisher

@@ -12,14 +12,14 @@ spec:
       spec:
         containers:
           - name: redis-consumer
-            image: techsvcdtiregistry.azurecr.io/redis-consumer:latest
+            image: techsvcdtiregistry.azurecr.io/loader-app:latest
             imagePullPolicy: Always
         # resources:
         # requests:
   pollingInterval: 3
   successfulJobsHistoryLimit: 0
   failedJobsHistoryLimit: 5
-  maxReplicaCount: 150
+  maxReplicaCount: 25
   rolloutStrategy: accurate
   triggers:
     - type: redis  # https://keda.sh/docs/2.7/scalers/redis-lists/
