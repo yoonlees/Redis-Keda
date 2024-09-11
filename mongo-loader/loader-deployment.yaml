@@ -1,0 +1,29 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: redis-publisher
+spec:
+  schedule: "30 14 * * *"
+  timeZone: "US/Central"
+  jobTemplate:
+    spec:
+      template:
+        spec: 
+          restartPolicy: Never
+          hostNetwork: true
+          containers:
+            - name: redis-publisher
+              image: techsvcdtiregistry.azurecr.io/redis-publisher:latest
+              imagePullPolicy: Always
+              volumeMounts:
+                - name: azure
+                  mountPath: /mnt/azure
+                  readOnly: false
+          volumes:
+            - name: azure
+              csi:
+                driver: file.csi.azure.com
+                volumeAttributes:
+                  secretName: azure-secret  # required
+                  shareName: kube-storage  # required
+                  mountOptions: 'dir_mode=0777,file_mode=0777,cache=strict,actimeo=30,nosharesock'  # optional
