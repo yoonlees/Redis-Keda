@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: pinecone-loader
+spec:
+  schedule: "20 12 * * *"
+  timeZone: "US/Central"
+  jobTemplate:
+    spec:
+      template:
+        spec: 
+          restartPolicy: Never
+          hostNetwork: true
+          containers:
+            - name: pinecone-loader
+              image: techsvcdtiregistry.azurecr.io/pinecone-loader:latest
+              imagePullPolicy: Always
