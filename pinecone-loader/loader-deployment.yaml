@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: pinecone-loader
 spec:
-  schedule: "20 12 * * *"
+  schedule: "30 04 * * *"
   timeZone: "US/Central"
   jobTemplate:
     spec:

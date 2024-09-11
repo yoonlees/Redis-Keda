@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: mongo-loader
 spec:
-  schedule: "20 11 * * *"
+  schedule: "00 04 * * *"
   timeZone: "US/Central"
   jobTemplate:
     spec:
