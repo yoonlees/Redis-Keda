@@ -19,7 +19,7 @@ spec:
   pollingInterval: 3
   successfulJobsHistoryLimit: 0
   failedJobsHistoryLimit: 5
-  maxReplicaCount: 25
+  maxReplicaCount: 7
   rolloutStrategy: accurate
   triggers:
     - type: redis  # https://keda.sh/docs/2.7/scalers/redis-lists/

@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: redis-publisher
 spec:
-  schedule: "35 22 * * *"
+  schedule: "30 14 * * *"
   timeZone: "US/Central"
   jobTemplate:
     spec:
